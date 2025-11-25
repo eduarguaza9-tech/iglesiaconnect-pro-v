@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="description" content="IglesiaConnect Pro - Sistema moderno de gestión para iglesias con calendario, ministerios y reportes" />
+  <meta name="theme-color" content="#7C3AED" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="IglesiaConnect Pro" />
+  
+  <!-- Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+  
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <title>IglesiaConnect Pro - Sistema de Gestión para Iglesias</title>
+  <script type="module" crossorigin src="/assets/index-B4cYaDoz.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CwDrUQXW.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('Service Worker registrado correctamente:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('Error al registrar Service Worker:', error);
+          });
+      });
+    }
+  </script>
+
+  <!-- Floating Brand Ball - Modern Design -->
+  <div id="minimax-floating-ball" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  ">
+    <div style="
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    ">
+      IC
+    </div>
+    <span>IglesiaConnect Pro</span>
+    <div class="minimax-close-icon" style="
+      margin-left: 8px;
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    ">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+        <path d="M9.5 3.5L3.5 9.5M3.5 3.5L9.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    function initFloatingBall() {
+      const ball = document.getElementById('minimax-floating-ball');
+      if (!ball) return;
+
+      // Animate in
+      setTimeout(() => {
+        ball.style.opacity = '1';
+        ball.style.transform = 'translateY(0)';
+      }, 1000);
+
+      // Hover effects
+      ball.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px) scale(1.05)';
+        this.style.boxShadow = '0 12px 40px rgba(124, 58, 237, 0.4)';
+      });
+
+      ball.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+        this.style.boxShadow = '0 8px 32px rgba(124, 58, 237, 0.3)';
+      });
+
+      // Handle close button click
+      const closeIcon = ball.querySelector('.minimax-close-icon');
+      closeIcon.addEventListener('click', function (e) {
+        e.stopPropagation();
+        ball.style.opacity = '0';
+        ball.style.transform = 'translateY(20px)';
+
+        setTimeout(() => {
+          ball.style.display = 'none';
+        }, 300);
+      });
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', initFloatingBall); 
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #7C3AED, #A855F7);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #6D28D9, #9333EA);
+    }
+
+    /* Loading Animation */
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+    
+    .pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Custom Focus Styles */
+    .focus-visible:focus {
+      outline: 2px solid #7C3AED;
+      outline-offset: 2px;
+    }
+
+    /* Smooth Transitions */
+    * {
+      transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    }
+  </style>
+</body>
+
+</html>
